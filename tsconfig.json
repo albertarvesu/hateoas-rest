@@ -1,30 +1,28 @@
-// tsconfig.json
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "pretty": true,
-        "sourceMap": true,
-        "target": "es6",
-        "outDir": "./dist",
-        "baseUrl": "./lib",
-        "lib": ["es5", "es6", "es7", "es2017", "dom"],
-        "allowJs": false,
-        "jsx": "react",
-        "forceConsistentCasingInFileNames": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "suppressImplicitAnyIndexErrors": true,
-        "noUnusedLocals": true,
-        "allowSyntheticDefaultImports": true,
-        "experimentalDecorators": true
-    },
-    "include": [
-        "lib/**/*.ts"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "pretty": true,
+    "sourceMap": true,
+    "target": "es6",
+    "outDir": "./dist",
+    "baseUrl": "./lib",
+    "lib": ["es5", "es6", "es7", "es2017", "dom"],
+    "allowJs": false,
+    "jsx": "react",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "lib/**/*.ts",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

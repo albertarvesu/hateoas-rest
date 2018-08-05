@@ -2,13 +2,14 @@ import * as bodyParser from 'body-parser'
 import * as express from 'express'
 import * as mongoose from 'mongoose'
 
-import { Routes } from './Routes'
+import { Routes } from './routes'
 
 class App {
 
   public app: express.Application
   public router: Routes = new Routes()
-  public mongoUrl: string = 'mongodb://localhost:27017/hateoasrest'
+  public mongoUrl: string = process.env.MONGO_URL ||
+    `mongodb://localhost:27017/${process.env.MONGO_DB || 'hateoasrest'}`
 
   constructor() {
     this.app = express()
