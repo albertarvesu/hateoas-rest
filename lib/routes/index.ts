@@ -5,8 +5,7 @@ import Root from './Root'
 
 export class Routes {
   public routes(App: express.Application): void {
-    App.route('/api').get(Root)
-
+    App.route('/').get(Root)
     App.use('/api/auth', Auth)
   }
 }

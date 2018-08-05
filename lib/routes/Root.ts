@@ -4,12 +4,12 @@ const getRoot = (req: Request, res: Response) => {
   res.json({
     links: [
       {
-        href: 'http://127.0.0.1/api/auth/signIn',
+        href: 'http://localhost/api/auth/signIn',
         method: 'POST',
         rel: 'signIn',
       },
       {
-        href: 'http://127.0.0.1/api/auth/signUp',
+        href: 'http://localhost/api/auth/signUp',
         method: 'POST',
         rel: 'signUp',
       },
