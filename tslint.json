@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier",
+    "tslint-config-airbnb",
+    "tslint-immutable"
+  ],
+  "rules": {
+    "semicolon": [true, "never"],
+    "no-var-keyword": true,
+    "no-parameter-reassignment": true,
+    "readonly-array": true,
+    "no-let": true,
+    "no-object-mutation": true,
+    "no-array-mutation": true,
+    "no-delete": true,
+    "no-method-signature": true,
+    "no-mixed-interface": true,
+    "no-loop-statement": true
+  },
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**/*.ts"
+    ]
+  }
+}
