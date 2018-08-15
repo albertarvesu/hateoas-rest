@@ -41,6 +41,7 @@ const UserSchema = new Schema({
   },
 })
 
+// tslint:disable-next-line:variable-name
 const User = mongoose.model('User', UserSchema)
 
 export default User

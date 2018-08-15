@@ -78,14 +78,14 @@ export class AuthController {
   private generateLinks() {
     return [
       {
-        href: `${process.env.HOSTNAME}/api/campaigns`,
+        href: `${process.env.HOSTNAME}/api/briefs`,
         method: 'GET',
-        rel: 'listCampaigns',
+        rel: 'listBriefs',
       },
       {
-        href: `${process.env.HOSTNAME}/api/campaigns`,
+        href: `${process.env.HOSTNAME}/api/briefs`,
         method: 'POST',
-        rel: 'createCampaign',
+        rel: 'createBrief',
       },
       {
         href: `${process.env.HOSTNAME}/auth/signOut`,
