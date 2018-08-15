@@ -22,12 +22,14 @@ export class AuthController {
       }
 
       return {
-        accessToken: this.generateToken(userJson),
         data: {
+          accessToken: this.generateToken(userJson),
           ...userJson,
-          ...(this.generateSelf()),
         },
-        links: this.generateLinks(),
+        links: [
+          ...this.generateSelf(),
+          ...this.generateLinks(),
+        ],
       }
 
     } catch (e) {
@@ -45,12 +47,14 @@ export class AuthController {
       const { password, ...userJson } = userResp.toJSON()
 
       return {
-        accessToken: this.generateToken(userJson),
         data: {
+          accessToken: this.generateToken(userJson),
           ...userJson,
-          ...(this.generateSelf()),
         },
-        links: this.generateLinks(),
+        links: [
+          ...this.generateSelf(),
+          ...this.generateLinks(),
+        ],
       }
     } catch (e) {
       throw new Error(e)
@@ -62,37 +66,33 @@ export class AuthController {
   }
 
   private generateSelf() {
-    return {
-      self: [
-        {
-          href: 'http://localhost/api/me',
-          method: 'GET',
-          rel: 'me',
-        },
-      ],
-    }
+    return [
+      {
+        href: `${process.env.HOSTNAME}/api/me`,
+        method: 'GET',
+        rel: 'me',
+      },
+    ]
   }
 
   private generateLinks() {
-    return {
-      links: [
-        {
-          href: 'http://localhost/api/campaigns',
-          method: 'GET',
-          rel: 'listCampaigns',
-        },
-        {
-          href: 'http://localhost/api/campaigns',
-          method: 'POST',
-          rel: 'createCampaign',
-        },
-        {
-          href: 'http://localhost/api/auth/signOut',
-          method: 'GET',
-          rel: 'signOut',
-        },
-      ],
-    }
+    return [
+      {
+        href: `${process.env.HOSTNAME}/api/campaigns`,
+        method: 'GET',
+        rel: 'listCampaigns',
+      },
+      {
+        href: `${process.env.HOSTNAME}/api/campaigns`,
+        method: 'POST',
+        rel: 'createCampaign',
+      },
+      {
+        href: `${process.env.HOSTNAME}/auth/signOut`,
+        method: 'GET',
+        rel: 'signOut',
+      },
+    ]
   }
 
 }
