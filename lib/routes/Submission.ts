@@ -28,22 +28,22 @@ const show = async (req: Request, res: Response) => {
 //   }
 // }
 
-// const patch = async (req: Request, res: Response) => {
-//   try {
-//     res.json(await briefController.patch(req.params, req.body))
-//   } catch (e) {
-//     res.status(400).send(e.message)
-//   }
-// }
+const patch = async (req: Request, res: Response) => {
+  try {
+    res.json(await submissionController.patch(req.params, req.body))
+  } catch (e) {
+    res.status(400).send(e.message)
+  }
+}
 
-// const remove = async (req: Request, res: Response) => {
-//   try {
-//     await briefController.remove(req.params)
-//     res.status(204).send('Success')
-//   } catch (e) {
-//     res.status(400).send(e.message)
-//   }
-// }
+const remove = async (req: Request, res: Response) => {
+  try {
+    await submissionController.remove(req.params)
+    res.status(204).send('Success')
+  } catch (e) {
+    res.status(400).send(e.message)
+  }
+}
 
 const router = Router({ mergeParams: true })
 
@@ -51,7 +51,7 @@ router
   .get('/', list)
   .get('/:submissionId', show)
   // .post('/', create)
-  // .patch('/:briefId', patch)
-  // .delete('/:briefId', remove)
+  .patch('/:submissionId', patch)
+  .delete('/:submissionId', remove)
 
 export default router

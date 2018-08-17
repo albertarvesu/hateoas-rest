@@ -45,6 +45,28 @@ export class SubmissionController {
     }
   }
 
+  public async patch(params: any, body: any) {
+    try {
+      const result = await Submission.findByIdAndUpdate(params.briefId, body, { new: true })
+      const brief = result && result.toJSON()
+      return {
+        data: brief,
+        links: this.generateSelf(brief),
+      }
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
+
+  public async remove(params: any) {
+    try {
+      const result = await Submission.findByIdAndRemove(params.submissionId).exec()
+      return result
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
+
   /** Private methods */
 
   private generateSelf(briefId: string, submission?: ISubmission) {
