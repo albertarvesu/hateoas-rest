@@ -70,7 +70,7 @@ export class AuthController {
       {
         href: `${process.env.HOSTNAME}/api/me`,
         method: 'GET',
-        rel: 'me',
+        rel: 'self',
       },
     ]
   }
@@ -78,12 +78,12 @@ export class AuthController {
   private generateLinks() {
     return [
       {
-        href: `${process.env.HOSTNAME}/api/briefs`,
+        href: `${process.env.HOSTNAME}/briefs`,
         method: 'GET',
         rel: 'listBriefs',
       },
       {
-        href: `${process.env.HOSTNAME}/api/briefs`,
+        href: `${process.env.HOSTNAME}/briefs`,
         method: 'POST',
         rel: 'createBrief',
       },

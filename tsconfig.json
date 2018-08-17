@@ -13,7 +13,6 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
@@ -22,7 +21,6 @@
   },
   "include": [
     "lib/**/*.ts",
-    "*.ts"
   ],
   "exclude": [
     "node_modules"

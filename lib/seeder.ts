@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose'
 
 mongoose.connect('mongodb://localhost:27017/hateoasrest', { useNewUrlParser: true })
 
-import Brief, { IBrief } from './lib/models/Brief'
+import Brief, { IBrief } from './../lib/models/Brief'
 
 Brief.remove({}).exec()
 

@@ -11,6 +11,7 @@
     "dev": "ts-node ./lib/index.ts",
     "start": "nodemon ./dist/index.js",
     "prod": "npm run build && npm run start",
+    "seed": "npm run build && node ./dist/seeder.js",
     "lint:ts": "tslint -c tslint.json -p .",
     "lint:ts:fix": "tslint --fix -c tslint.json -p ."
   },

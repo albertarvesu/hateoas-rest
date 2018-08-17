@@ -22,6 +22,7 @@ interface IProduct {
 }
 
 export interface IBrief {
+  _id: string
   follower_threshold: number
   supported_submission_types: ReadonlyArray<string>
   status: string
