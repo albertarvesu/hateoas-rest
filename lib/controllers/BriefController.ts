@@ -2,7 +2,7 @@ import Brief, { IBrief } from './../models/Brief'
 
 export class BriefController {
 
-  public async list(query) {
+  public async list(query: any) {
     try {
       const limit = parseInt(query.limit, 10) || 20
       const offset = parseInt(query.offset, 10) || 0
@@ -11,6 +11,9 @@ export class BriefController {
                         .limit(limit)
                         .skip(offset)
                         .exec()
+
+      const total = await Brief.countDocuments({})
+
       return {
         data: briefs.map((item) => {
           const brief = item.toJSON()
@@ -25,6 +28,9 @@ export class BriefController {
         links: [
           ...this.generateSelf(),
         ],
+        meta: {
+          total,
+        },
       }
     } catch (e) {
       throw new Error(e)
@@ -81,7 +87,7 @@ export class BriefController {
 
   public async remove(params: any) {
     try {
-      const result = await Brief.findByIdAndRemove(params.briefId)
+      const result = await Brief.findByIdAndRemove(params.briefId).exec()
       return result
     } catch (e) {
       throw new Error(e)
@@ -91,19 +97,41 @@ export class BriefController {
   /** Private methods */
 
   private generateSelf(brief?: IBrief) {
-    return [
+    const self: ReadonlyArray<any> = [
       {
         href: `${process.env.HOSTNAME}/briefs${ brief ? `/${brief._id}` : '{?offset,limit}' }`,
         method: 'GET',
         rel: 'self',
       },
     ]
+
+    if (brief) {
+      return [
+        ...self,
+        {
+          href: `${process.env.HOSTNAME}/briefs/${brief._id}`,
+          method: 'PATCH',
+          rel: 'patchBrief',
+        },
+        {
+          href: `${process.env.HOSTNAME}/briefs/${brief._id}`,
+          method: 'DELETE',
+          rel: 'deleteBrief',
+        },
+        {
+          href: `${process.env.HOSTNAME}/briefs/${brief._id}/submissions`,
+          method: 'POST',
+          rel: 'createSubmission',
+        },
+      ]
+    }
+    return self
   }
 
   private generateLinks(brief) {
     return [
       {
-        href: `${process.env.HOSTNAME}/briefs/${brief._id}/submission{?offset,limit}`,
+        href: `${process.env.HOSTNAME}/briefs/${brief._id}/submissions{?offset,limit}`,
         method: 'GET',
         rel: 'listSubmissions',
       },

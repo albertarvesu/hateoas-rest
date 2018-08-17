@@ -2,6 +2,8 @@ import { Request, Response, Router } from 'express'
 
 import BriefController from './../controllers/BriefController'
 
+import Submission from './Submission'
+
 const briefController = new BriefController()
 
 const list = async (req: Request, res: Response) => {
@@ -53,5 +55,7 @@ router
   .post('/', create)
   .patch('/:briefId', patch)
   .delete('/:briefId', remove)
+
+  .use('/:briefId/submissions', Submission)
 
 export default router
