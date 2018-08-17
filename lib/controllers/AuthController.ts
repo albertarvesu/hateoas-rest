@@ -78,7 +78,7 @@ export class AuthController {
   private generateLinks() {
     return [
       {
-        href: `${process.env.HOSTNAME}/briefs`,
+        href: `${process.env.HOSTNAME}/briefs{?offset,limit}`,
         method: 'GET',
         rel: 'listBriefs',
       },

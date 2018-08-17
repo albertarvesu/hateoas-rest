@@ -10,6 +10,7 @@ Brief.remove({}).exec()
 // tslint:disable-next-line
 for (let i = 0; i < 10; i++) {
   const brief: IBrief = {
+    _id: mongoose.Types.ObjectId(),
     budget: { remaining: faker.random.number(5000), spent: faker.random.number(5000) },
     call_to_action: faker.random.words(4),
     donts: [faker.random.words(4)],

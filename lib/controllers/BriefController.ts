@@ -2,7 +2,7 @@ import Brief, { IBrief } from './../models/Brief'
 
 export class BriefController {
 
-  public async list (query) {
+  public async list(query) {
     try {
       const limit = parseInt(query.limit, 10) || 20
       const offset = parseInt(query.offset, 10) || 0
@@ -31,7 +31,7 @@ export class BriefController {
     }
   }
 
-  public async show (params) {
+  public async show(params) {
     try {
       const result = await Brief.findById(params.briefId).exec()
       const brief = result && result.toJSON()
@@ -39,12 +39,56 @@ export class BriefController {
         data: brief,
         links: [
           ...this.generateSelf(brief),
+          ...this.generateLinks(brief),
         ],
       }
     } catch (e) {
       throw new Error(e)
     }
   }
+
+  public async create(body: IBrief) {
+    try {
+      const result = await new Brief(body).save()
+      const brief = result && result.toJSON()
+      return {
+        data: brief,
+        links: [
+          ...this.generateSelf(brief),
+          ...this.generateLinks(brief),
+        ],
+      }
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
+
+  public async patch(params: any, body: any) {
+    try {
+      const result = await Brief.findByIdAndUpdate(params.briefId, body, { new: true })
+      const brief = result && result.toJSON()
+      return {
+        data: brief,
+        links: [
+          ...this.generateSelf(brief),
+          ...this.generateLinks(brief),
+        ],
+      }
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
+
+  public async remove(params: any) {
+    try {
+      const result = await Brief.findByIdAndRemove(params.briefId)
+      return result
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
+
+  /** Private methods */
 
   private generateSelf(brief?: IBrief) {
     return [

@@ -22,7 +22,7 @@ interface IProduct {
 }
 
 export interface IBrief {
-  _id: string
+  _id?: mongoose.Types.ObjectId,
   follower_threshold: number
   supported_submission_types: ReadonlyArray<string>
   status: string
