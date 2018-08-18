@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express'
 
+import { IAuthUserRequest, IUser } from '../models/User'
 import AuthController from './../controllers/AuthController'
 
 const authController = new AuthController()
@@ -20,7 +21,7 @@ const signUp = async (req: Request, res: Response) => {
   }
 }
 
-export const verify = async (req: Request, res: Response, next) => {
+export const verify = async (req: IAuthUserRequest, res: Response, next) => {
   try {
     const authorization = req.headers.authorization
     if (!authorization) {
@@ -30,7 +31,7 @@ export const verify = async (req: Request, res: Response, next) => {
       const currentUser = await authController.verify(token)
 
       // tslint:disable-next-line:no-object-mutation
-      req.params = { ...req.params, currentUser  }
+      req.currentUser = currentUser as IUser
       next()
     }
 

@@ -2,6 +2,7 @@ import * as express from 'express'
 
 import Auth, { verify } from './Auth'
 import Brief from './Brief'
+import Me from './Me'
 import Root from './Root'
 
 export class Routes {
@@ -11,6 +12,8 @@ export class Routes {
     App.use('/auth', Auth)
 
     App.use(verify)
+
+    App.use('/me', Me)
     App.use('/briefs', Brief)
   }
 }

@@ -1,3 +1,4 @@
+import { Request } from 'express'
 import * as mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
@@ -7,6 +8,10 @@ export interface IUser {
   firstName: string
   lastName: string
   password: string
+}
+
+export interface IAuthUserRequest extends Request {
+  currentUser: IUser
 }
 
 // tslint:disable-next-line:variable-name
