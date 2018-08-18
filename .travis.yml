@@ -9,5 +9,5 @@ before_script:
   - yarn
 script:
   - yarn lint:ts
-  # - yarn test
+  - yarn test
   - yarn build
