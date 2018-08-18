@@ -5,4 +5,4 @@
 --timeout 120000
 --full-trace
 --exit
-./lib/tests/setup.ts ./lib/tests/**/*.spec.ts
+./src/tests/setup.ts ./src/tests/**/*.spec.ts

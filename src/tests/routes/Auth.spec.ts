@@ -2,6 +2,7 @@
 process.env.NODE_ENV = 'testing'
 
 import * as chai from 'chai'
+import * as faker from 'faker'
 
 import { server } from '../../index'
 
@@ -10,8 +11,7 @@ import chaiHttp = require('chai-http')
 const expect = chai.expect
 chai.use(chaiHttp)
 
-const rand = Math.floor(Math.random() * 10000) + 1
-const email = `email+${rand}@example.com`
+const email = faker.internet.email().toLowerCase()
 
 const signInDetails = {
   email,
@@ -26,8 +26,8 @@ const signUpDetails = {
 }
 
 describe('Auth Routes', () => {
-  it('should sign up user successfully', (done) => {
 
+  it('should sign up user successfully', (done) => {
     chai.request(server)
       .post('/auth/signUp')
       .set('content-type', 'application/json')
@@ -42,14 +42,26 @@ describe('Auth Routes', () => {
       })
   })
 
+  it('should fail sign in on invalid credentials', (done) => {
+    chai.request(server)
+      .post('/auth/signIn')
+      .set('content-type', 'application/json')
+      .send({ email: 'test@example.com', password: '12345' })
+      .end((err: Error, res: any): void => {
+        expect(res.statusCode).to.be.equal(400)
+        done()
+      })
+  })
+
   it('should signIn the user sucessfully', (done) => {
     chai.request(server)
       .post('/auth/signIn')
       .set('content-type', 'application/json')
       .send(signInDetails)
       .end((err: Error, res: any): void => {
-        // expect(res.body.length).to.be.equal(2)
         expect(res.statusCode).to.be.equal(200)
+        expect(res.body.data.lastName).to.be.equal('lastName')
+        expect(res.body.data.firstName).to.be.equal('firstName')
         done()
       })
   })

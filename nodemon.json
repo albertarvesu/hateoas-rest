@@ -5,8 +5,8 @@
     "node_modules/**/node_modules"
   ],
   "watch": [
-    "lib/**/*.ts"
+    "src/**/*.ts"
   ],
   "ext": "ts",
-  "exec": "./node_modules/.bin/ts-node ./lib/index.ts"
+  "exec": "./node_modules/.bin/ts-node ./src/index.ts"
 }

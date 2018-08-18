@@ -1,5 +1,6 @@
 import * as bodyParser from 'body-parser'
 import * as express from 'express'
+import { Mockgoose } from 'mockgoose'
 import * as mongoose from 'mongoose'
 
 import { Routes } from './routes'
@@ -23,8 +24,17 @@ class App {
     this.app.use(bodyParser.urlencoded({ extended: false }))
   }
 
-  private mongoSetup(): void {
+  private async mongoSetup() {
+    if (process.env.NODE_ENV === 'testing') {
+      const mockgoose: Mockgoose = new Mockgoose(mongoose)
+      await mockgoose.prepareStorage()
+    }
+
     mongoose.connect(this.mongoUrl, { useNewUrlParser: true })
+    mongoose.connection.on('connected', () => {
+      // tslint:disable-next-line:no-console
+      console.log(`Database connected: ${process.env.NODE_ENV || ''}`)
+    })
   }
 
 }
