@@ -14,7 +14,7 @@
     "seed": "ts-node ./src/seeder.ts",
     "test": "mocha",
     "test:coverage": "nyc mocha",
-    "test:codecov": "nyc report --reporter=text-lcov > coverage.lcov",
+    "test:codecov": "yarn test:coverage && nyc report --reporter=text-lcov > coverage.lcov",
     "lint:ts": "tslint -c tslint.json -p .",
     "lint:ts:fix": "tslint --fix -c tslint.json -p ."
   },
