@@ -5,7 +5,7 @@ import App from './App'
 
 dotenv.config()
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
 const server: http.Server = App.listen(PORT, () => {
   // tslint:disable-next-line:no-console

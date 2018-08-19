@@ -6,8 +6,11 @@ cache:
     - node_modules
 before_script:
   - npm install yarn -g
+  - npm install codecov -g
   - yarn
 script:
   - yarn lint:ts
-  - yarn test
+  - yarn test:codecov
   - yarn build
+after_success:
+  - codecov

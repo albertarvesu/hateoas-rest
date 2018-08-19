@@ -13,6 +13,8 @@
     "prod": "npm run build && npm run start",
     "seed": "ts-node ./src/seeder.ts",
     "test": "mocha",
+    "test:coverage": "nyc mocha",
+    "test:codecov": "nyc report --reporter=text-lcov > coverage.lcov",
     "lint:ts": "tslint -c tslint.json -p .",
     "lint:ts:fix": "tslint --fix -c tslint.json -p ."
   },
@@ -43,10 +45,35 @@
     "chai-http": "^4.0.0",
     "mocha": "^5.2.0",
     "mockgoose": "^7.3.5",
+    "nyc": "^12.0.2",
     "source-map-support": "^0.5.8",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.9.2",
     "tslint-config-prettier": "^1.14.0",
     "tslint-immutable": "^4.6.0"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "require": [
+      "ts-node/register",
+      "source-map-support/register"
+    ],
+    "exclude": [
+      "src/**/*.d.ts",
+      "src/**/*.spec.ts"
+    ],
+    "reporter": [
+      "html",
+      "text"
+    ],
+    "check-coverage": "--lines 50 --per-file",
+    "all": false,
+    "sourceMap": false,
+    "instrument": true
   }
 }
