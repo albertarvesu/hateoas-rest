@@ -61,8 +61,16 @@ export class AuthController {
     }
   }
 
+  public async verify(token: string) {
+    try {
+      return await jsonwebtoken.verify(token, process.env.APP_SECRET || 'secret')
+    } catch (e) {
+      throw new Error('Invalid token')
+    }
+  }
+
   private generateToken(userJson: IUser) {
-    return jsonwebtoken.sign(userJson, 'secret', { expiresIn: '1 day' })
+    return jsonwebtoken.sign(userJson, process.env.APP_SECRET || 'secret', { expiresIn: '1 day' })
   }
 
   private generateSelf() {

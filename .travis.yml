@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "lts/carbon"
+cache:
+  directories:
+    - node_modules
+before_script:
+  - npm install yarn -g
+  - npm install codecov -g
+  - yarn
+script:
+  - yarn lint:ts
+  - yarn test:codecov
+  - yarn build
+after_success:
+  - codecov

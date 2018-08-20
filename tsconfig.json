@@ -6,7 +6,7 @@
     "sourceMap": true,
     "target": "es6",
     "outDir": "./dist",
-    "baseUrl": "./lib",
+    "baseUrl": "./src",
     "lib": ["es5", "es6", "es7", "es2017", "dom"],
     "allowJs": false,
     "jsx": "react",
@@ -20,7 +20,7 @@
     "experimentalDecorators": true
   },
   "include": [
-    "lib/**/*.ts",
+    "src/**/*.ts",
   ],
   "exclude": [
     "node_modules"
