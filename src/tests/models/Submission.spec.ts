@@ -108,10 +108,10 @@ describe('Submission Model', () => {
     const submission: ISubmission = result.toJSON()
 
     const updated = await Submission.findByIdAndUpdate(
-                    submission._id,
-                    { amount_cents: 10000 },
-                    { new: true },
-                  )
+                      submission._id,
+                      { amount_cents: 10000 },
+                      { new: true },
+                    )
     const newSubmission: ISubmission = updated && updated.toJSON()
 
     expect(newSubmission).to.be.an('object')

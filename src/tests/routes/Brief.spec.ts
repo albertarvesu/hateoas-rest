@@ -49,7 +49,7 @@ describe('Brief Routes', () => {
     })
   })
 
-  it('should responds with 403 status code if no authorization header', (done) => {
+  it('should respond with 403 status code if no authorization header', (done) => {
     chai.request(server)
       .get('/briefs')
       .end((err: Error, res: any): void => {

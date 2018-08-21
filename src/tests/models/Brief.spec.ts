@@ -73,10 +73,10 @@ describe('Brief Model', () => {
     const brief = result && result.toJSON()
 
     const updated = await Brief.findByIdAndUpdate(
-                    brief._id,
-                    { call_to_action: 'Call to Action' },
-                    { new: true },
-                  )
+      brief._id,
+      { call_to_action: 'Call to Action' },
+      { new: true },
+    )
     const newBrief: IBrief = updated && updated.toJSON()
 
     expect(newBrief).to.be.an('object')
