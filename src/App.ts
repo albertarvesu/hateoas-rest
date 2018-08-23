@@ -1,4 +1,5 @@
 import * as bodyParser from 'body-parser'
+import * as cors from 'cors'
 import * as express from 'express'
 import { Mockgoose } from 'mockgoose'
 import * as mongoose from 'mongoose'
@@ -20,6 +21,7 @@ class App {
   }
 
   private config(): void {
+    this.app.use(cors())
     this.app.use(bodyParser.json())
     this.app.use(bodyParser.urlencoded({ extended: false }))
   }
