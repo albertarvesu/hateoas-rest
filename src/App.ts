@@ -7,7 +7,6 @@ import * as mongoose from 'mongoose'
 import { Routes } from './routes'
 
 class App {
-
   public app: express.Application
   public router: Routes = new Routes()
   public mongoUrl: string = process.env.MONGO_URL ||

@@ -1,1 +1,1 @@
-web: yarn prod
+web: yarn build && node ./dist/index.js
