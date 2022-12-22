@@ -25,7 +25,7 @@
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "forever": "^0.15.3",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.7.5",
     "nodemon": "^1.18.3",
     "ts-node": "^7.0.0",
